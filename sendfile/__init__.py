@@ -1,20 +1,24 @@
-VERSION = (0, 3, 12)
-__version__ = '.'.join(map(str, VERSION))
-
 from mimetypes import guess_type
 import os.path
 import unicodedata
 
 
+VERSION = (0, 3, 12)
+__version__ = '.'.join(map(str, VERSION))
+
+
 def _lazy_load(fn):
     _cached = []
+
     def _decorated():
         if not _cached:
             _cached.append(fn())
         return _cached[0]
+
     def clear():
         while _cached:
             _cached.pop()
+
     _decorated.clear = clear
     return _decorated
 
@@ -30,13 +34,13 @@ def _get_sendfile():
 
     backend = getattr(settings, 'SENDFILE_BACKEND', None)
     if not backend:
-        raise ImproperlyConfigured('You must specify a value for SENDFILE_BACKEND')
+        raise ImproperlyConfigured('You ust specify a value for SENDFILE_BACKEND')
     module = import_module(backend)
     return module.sendfile
 
 
-
-def sendfile(request, filename, attachment=False, attachment_filename=None, mimetype=None, encoding=None):
+def sendfile(request, filename, attachment=False, attachment_filename=None,
+             mimetype=None, encoding=None):
     '''
     create a response to send file using backend configured in SENDFILE_BACKEND
 
@@ -64,7 +68,7 @@ def sendfile(request, filename, attachment=False, attachment_filename=None, mime
             mimetype = guessed_mimetype
         else:
             mimetype = 'application/octet-stream'
-        
+
     response = _sendfile(request, filename, mimetype=mimetype)
     if attachment:
         if attachment_filename is None:
@@ -77,7 +81,8 @@ def sendfile(request, filename, attachment=False, attachment_filename=None, mime
                 # Django 1.3
                 from django.utils.encoding import force_unicode as force_text
             attachment_filename = force_text(attachment_filename)
-            ascii_filename = unicodedata.normalize('NFKD', attachment_filename).encode('ascii','ignore') 
+            ascii_filename = unicodedata.normalize('NFKD', attachment_filename)
+            ascii_filename = ascii_filename.encode('ascii', 'ignore')
 
             import six
             if six.PY3:

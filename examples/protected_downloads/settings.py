@@ -86,7 +86,7 @@ INSTALLED_APPS = (
 
 # SENDFILE settings
 SENDFILE_BACKEND = 'sendfile.backends.development'
-#SENDFILE_BACKEND = 'sendfile.backends.xsendfile'
-#SENDFILE_BACKEND = 'sendfile.backends.nginx'
+# SENDFILE_BACKEND = 'sendfile.backends.xsendfile'
+# SENDFILE_BACKEND = 'sendfile.backends.nginx'
 SENDFILE_ROOT = os.path.join(PROJECT_ROOT, 'protected')
 SENDFILE_URL = '/protected'
