@@ -1,8 +1,8 @@
 VERSION = (0, 3, 11)
 __version__ = '.'.join(map(str, VERSION))
 
-import os.path
 from mimetypes import guess_type
+import os.path
 import unicodedata
 
 
@@ -78,11 +78,17 @@ def sendfile(request, filename, attachment=False, attachment_filename=None, mime
                 from django.utils.encoding import force_unicode as force_text
             attachment_filename = force_text(attachment_filename)
             ascii_filename = unicodedata.normalize('NFKD', attachment_filename).encode('ascii','ignore') 
+
+            import six
+            if six.PY3:
+                ascii_filename = ascii_filename.decode()
             parts.append('filename="%s"' % ascii_filename)
+
             if ascii_filename != attachment_filename:
                 from django.utils.http import urlquote
                 quoted_filename = urlquote(attachment_filename)
                 parts.append('filename*=UTF-8\'\'%s' % quoted_filename)
+
         response['Content-Disposition'] = '; '.join(parts)
 
     response['Content-length'] = os.path.getsize(filename)
