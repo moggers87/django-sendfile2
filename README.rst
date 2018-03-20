@@ -1,6 +1,6 @@
-===============
-Django Sendfile
-===============
+=================
+Django Sendfile 2
+=================
 
 This is a wrapper around web-server specific methods for sending files to web clients.  This is useful when Django needs to check permissions associated files, but does not want to serve the actual bytes of the file itself.  i.e. as serving large files is not what Django is made for.
 
@@ -41,6 +41,13 @@ If you want to write your own backend simply create a module with a `sendfile` f
 
 Then specify the full path to the module in `SENDFILE_BACKEND`.  You only need to implement the sending of the file.  Adding the content-disposition headers etc is done elsewhere.
 
+Fork
+====
+
+This project is a fork of `django-sendfile
+<https://github.com/johnsensible/django-sendfile>`_. The original project
+appears mostly dead and has a number of outstanding bugs (especially with
+Python 3).
 
 Development backend
 ===================
