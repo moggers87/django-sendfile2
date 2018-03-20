@@ -1,2 +1,4 @@
 include README.rst
 include sendfile/*.txt
+global-exclude *.py[co]
+global-exclude __pycache__

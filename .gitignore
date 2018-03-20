@@ -1,7 +1,7 @@
 *.swp
 *.pyc
 *.db
-/django_sendfile.egg-info
+/django_sendfile2.egg-info
 /MANIFEST
 /dist
 /bin
