@@ -1,4 +1,4 @@
-VERSION = (0, 3, 11)
+VERSION = (0, 3, 12)
 __version__ = '.'.join(map(str, VERSION))
 
 from mimetypes import guess_type
