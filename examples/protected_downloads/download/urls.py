@@ -1,8 +1,8 @@
-from django.conf.urls.defaults import *
+from django.conf import urls
 
 from .views import download, download_list
 
-urlpatterns = patterns('',
-    url(r'^$', download_list),
-    url(r'(?P<download_id>\d+)/$', download, name='download'),
-)
+urlpatterns = [
+    urls.url(r'^$', download_list),
+    urls.url(r'(?P<download_id>\d+)/$', download, name='download'),
+]

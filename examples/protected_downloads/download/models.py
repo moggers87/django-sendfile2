@@ -1,6 +1,5 @@
 from django.db import models
 
-from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
@@ -8,7 +7,7 @@ sendfile_storage = FileSystemStorage(location=settings.SENDFILE_ROOT)
 
 
 class Download(models.Model):
-    users = models.ManyToManyField(User, blank=True)
+    users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
     is_public = models.BooleanField(default=True)
     title = models.CharField(max_length=255)
     # files stored in SENDFILE_ROOT directory (which should be protected)
@@ -23,3 +22,6 @@ class Download(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('download', [self.pk], {})
+
+    class Meta:
+        app_label = "download"
