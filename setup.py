@@ -1,27 +1,23 @@
-from distutils.core import setup
-
 try:
-    from distutils.command.build_py import build_py_2to3 as build_py
+    from setuptools import setup
 except ImportError:
-    from distutils.command.build_py import build_py
+    from distutils.core import setup
 
 
 version = __import__('sendfile').__version__
 
 
 setup(
-    name='django-sendfile',
+    name='django-sendfile2',
     version=version,
     description='Abstraction to offload file uploads to web-server (e.g. Apache with mod_xsendfile) once Django has checked permissions etc.',
     long_description=open('README.rst').read(),
-    author='John Montgomery',
-    author_email='john@sensibledevelopment.com',
-    url='https://github.com/johnsensible/django-sendfile',
+    author='Matt Molyneaux',
+    author_email='moggers87+git@moggers87.co.uk',
+    url='https://github.com/moggers87/django-sendfile2',
     license='BSD',
 
-    requires=['Django (>=1.3)'],
-    install_requires=['Django>=1.3'],
-
+    install_requires=['django'],
     packages=['sendfile', 'sendfile.backends'],
     package_dir={
         'sendfile': 'sendfile',
@@ -42,6 +38,4 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-
-    cmdclass={'build_py': build_py},
 )
