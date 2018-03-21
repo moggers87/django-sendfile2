@@ -3,7 +3,7 @@ import os.path
 import unicodedata
 
 
-VERSION = (0, 4, 0)
+VERSION = (0, 4, 1)
 __version__ = '.'.join(map(str, VERSION))
 
 
