@@ -60,6 +60,11 @@ Then specify the full path to the module in `SENDFILE_BACKEND`.  You only need
 to implement the sending of the file.  Adding the content-disposition headers
 etc is done elsewhere.
 
+Supported Django Versions
+=========================
+
+Django 1.8 to 1.11 is currently supported by this library.
+
 Fork
 ====
 
