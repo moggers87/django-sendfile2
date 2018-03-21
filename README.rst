@@ -147,5 +147,6 @@ You need to pay attention to whether you have trailing slashes or not on the SEN
 .. _mod_xsendfile: https://tn123.org/mod_xsendfile/
 .. _Apache: http://httpd.apache.org/
 .. _Lighthttpd: http://www.lighttpd.net/
-.. _mod_wsgi: http://code.google.com/p/modwsgi/
+.. _mod_wsgi: http://www.modwsgi.org/
+.. _mod_rewrite: http://httpd.apache.org/docs/current/mod/mod_rewrite.html
 
