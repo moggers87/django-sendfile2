@@ -1,6 +1,7 @@
 from django.views.generic.detail import BaseDetailView
 from sendfile import sendfile
 
+
 class BaseXSendFileView(BaseDetailView):
     file_field = None
     send_as_attachment = None
