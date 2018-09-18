@@ -3,13 +3,13 @@ try:
 except ImportError:
     from distutils.core import setup
 
-
-version = __import__('sendfile').__version__
+import versioneer
 
 
 setup(
     name='django-sendfile2',
-    version=version,
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     description='Abstraction to offload file uploads to web-server (e.g. Apache with mod_xsendfile) once Django has checked permissions etc.',
     long_description=open('README.rst').read(),
     author='Matt Molyneaux',
