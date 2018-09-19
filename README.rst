@@ -63,7 +63,7 @@ etc is done elsewhere.
 Supported Django Versions
 =========================
 
-Django 1.8 to 2.0 is currently supported by this library.
+Django 1.8 to 2.1 is currently supported by this library.
 
 Installation
 ============
