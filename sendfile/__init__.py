@@ -2,9 +2,15 @@ from mimetypes import guess_type
 import os.path
 import unicodedata
 
+from ._version import get_versions
 
-VERSION = (0, 4, 1)
-__version__ = '.'.join(map(str, VERSION))
+
+__version__ = get_versions()['version']
+del get_versions
+
+
+# old versions of django-sendfile have this, so keep it for compatibility
+VERSION = tuple(__version__.split("+")[0].split("."))
 
 
 def _lazy_load(fn):
