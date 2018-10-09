@@ -32,7 +32,7 @@ object.
 
 
 
-Backends are specified using the setting `SENDFILE_BACKEND`.  Currenly
+Backends are specified using the setting `SENDFILE_BACKEND`.  Currently
 available backends are:
 
 * `sendfile.backends.development` - for use with django development server
@@ -160,7 +160,7 @@ folder (`RewriteRule ^/private/ - [F]`) if someone tries to access it directly
 (`RewriteCond %{THE_REQUEST} ^[\S]+\ /private/`) by checking the original
 request (`THE_REQUEST`).
 
-Alledgedly `IS_SUBREQ` can be used to `perform the same job
+Allegedly `IS_SUBREQ` can be used to `perform the same job
 <http://www.mail-archive.com/django-users@googlegroups.com/msg96718.html>`_,
 but I was unable to get this working.
 
@@ -170,7 +170,7 @@ Nginx backend
 
 As with the mod_wsgi backend you need to set two extra settings:
 
-* `SENDFILE_ROOT` - this is a directoy where all files that will be used with
+* `SENDFILE_ROOT` - this is a directory where all files that will be used with
   sendfile must be located
 * `SENDFILE_URL` - internal URL prefix for all files served via sendfile
 
