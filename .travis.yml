@@ -1,11 +1,13 @@
 sudo: false
 language: python
+dist: xenial
 
 python:
   - "2.7"
   - "3.4"
   - "3.5"
   - "3.6"
+  - "3.7"
 
 install:
   - pip install tox-travis
@@ -19,11 +21,6 @@ matrix:
     - python: "3.6"
       env: TOX_ENV=flake8
       script: tox -e $TOX_ENV
-    # Enable 3.7 without globally enabling sudo and dist: xenial for other build jobs
-    # https://github.com/travis-ci/travis-ci/issues/9815
-    - python: 3.7
-      dist: xenial
-      sudo: true
 
 
 after_success:
