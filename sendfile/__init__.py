@@ -1,9 +1,16 @@
+from importlib import import_module
 from mimetypes import guess_type
 import os.path
 import unicodedata
 
-from ._version import get_versions
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
+from django.http import Http404
+from django.utils.encoding import force_text
+from django.utils.http import urlquote
+import six
 
+from ._version import get_versions
 
 __version__ = get_versions()['version']
 del get_versions
@@ -31,13 +38,6 @@ def _lazy_load(fn):
 
 @_lazy_load
 def _get_sendfile():
-    try:
-        from importlib import import_module
-    except ImportError:
-        from django.utils.importlib import import_module
-    from django.conf import settings
-    from django.core.exceptions import ImproperlyConfigured
-
     backend = getattr(settings, 'SENDFILE_BACKEND', None)
     if not backend:
         raise ImproperlyConfigured('You ust specify a value for SENDFILE_BACKEND')
@@ -65,7 +65,6 @@ def sendfile(request, filename, attachment=False, attachment_filename=None,
     _sendfile = _get_sendfile()
 
     if not os.path.exists(filename):
-        from django.http import Http404
         raise Http404('"%s" does not exist' % filename)
 
     guessed_mimetype, guessed_encoding = guess_type(filename)
@@ -83,18 +82,15 @@ def sendfile(request, filename, attachment=False, attachment_filename=None,
         parts = ['attachment']
 
         if attachment_filename:
-            from django.utils.encoding import force_text
             attachment_filename = force_text(attachment_filename)
             ascii_filename = unicodedata.normalize('NFKD', attachment_filename)
             ascii_filename = ascii_filename.encode('ascii', 'ignore')
 
-            import six
             if six.PY3:
                 ascii_filename = ascii_filename.decode()
             parts.append('filename="%s"' % ascii_filename)
 
             if ascii_filename != attachment_filename:
-                from django.utils.http import urlquote
                 quoted_filename = urlquote(attachment_filename)
                 parts.append('filename*=UTF-8\'\'%s' % quoted_filename)
 
