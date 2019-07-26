@@ -60,6 +60,7 @@ class TestSendfile(TempFileTestCase):
         response = real_sendfile(HttpRequest(), self._get_readme())
         self.assertTrue(response is not None)
         self.assertEqual('text/plain', response['Content-Type'])
+        self.assertEqual('inline; filename="testfile.txt"', response['Content-Disposition'])
         self.assertEqual(self._get_readme(), smart_str(response.content))
 
     def test_set_mimetype(self):
@@ -71,6 +72,11 @@ class TestSendfile(TempFileTestCase):
         response = real_sendfile(HttpRequest(), self._get_readme(), encoding='utf8')
         self.assertTrue(response is not None)
         self.assertEqual('utf8', response['Content-Encoding'])
+
+    def test_inline_filename(self):
+        response = real_sendfile(HttpRequest(), self._get_readme(), attachment_filename='tests.txt')
+        self.assertTrue(response is not None)
+        self.assertEqual('inline; filename="tests.txt"', response['Content-Disposition'])
 
     def test_attachment(self):
         response = real_sendfile(HttpRequest(), self._get_readme(), attachment=True)

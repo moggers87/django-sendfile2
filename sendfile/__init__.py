@@ -50,10 +50,14 @@ def sendfile(request, filename, attachment=False, attachment_filename=None,
     '''
     create a response to send file using backend configured in SENDFILE_BACKEND
 
-    If attachment is True the content-disposition header will be set.
+    Filename is the absolute path to the file to send.
+
+    If attachment is True the content-disposition header will be set accordingly.
     This will typically prompt the user to download the file, rather
-    than view it.  The content-disposition filename depends on the
-    value of attachment_filename:
+    than view it. But even if False, the user may still be prompted, depending
+    on the browser capabilities and configuration.
+
+    The content-disposition filename depends on the value of attachment_filename:
 
         None (default): Same as filename
         False: No content-disposition filename
@@ -75,26 +79,27 @@ def sendfile(request, filename, attachment=False, attachment_filename=None,
             mimetype = 'application/octet-stream'
 
     response = _sendfile(request, filename, mimetype=mimetype)
-    if attachment:
-        if attachment_filename is None:
-            attachment_filename = os.path.basename(filename)
 
-        parts = ['attachment']
+    # Suggest to view (inline) or download (attachment) the file
+    parts = ['attachment' if attachment else 'inline']
 
-        if attachment_filename:
-            attachment_filename = force_text(attachment_filename)
-            ascii_filename = unicodedata.normalize('NFKD', attachment_filename)
-            ascii_filename = ascii_filename.encode('ascii', 'ignore')
+    if attachment_filename is None:
+        attachment_filename = os.path.basename(filename)
 
-            if six.PY3:
-                ascii_filename = ascii_filename.decode()
-            parts.append('filename="%s"' % ascii_filename)
+    if attachment_filename:
+        attachment_filename = force_text(attachment_filename)
+        ascii_filename = unicodedata.normalize('NFKD', attachment_filename)
+        ascii_filename = ascii_filename.encode('ascii', 'ignore')
 
-            if ascii_filename != attachment_filename:
-                quoted_filename = urlquote(attachment_filename)
-                parts.append('filename*=UTF-8\'\'%s' % quoted_filename)
+        if six.PY3:
+            ascii_filename = ascii_filename.decode()
+        parts.append('filename="%s"' % ascii_filename)
 
-        response['Content-Disposition'] = '; '.join(parts)
+        if ascii_filename != attachment_filename:
+            quoted_filename = urlquote(attachment_filename)
+            parts.append('filename*=UTF-8\'\'%s' % quoted_filename)
+
+    response['Content-Disposition'] = '; '.join(parts)
 
     response['Content-length'] = os.path.getsize(filename)
     response['Content-Type'] = mimetype
