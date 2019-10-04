@@ -200,6 +200,13 @@ sent to NGINX and you may get 404s.  You should be able to see what file NGINX
 is trying to load in the error.log if this happens.  From there it should be
 fairly easy to work out what the right settings are.
 
+Funding
+=======
+
+If you have found django-sendfile2 to be useful and would like to see its continued
+development, please consider `buying me a coffee
+<https://ko-fi.com/moggers87>`__.
+
 .. _mod_xsendfile: https://tn123.org/mod_xsendfile/
 .. _Apache: http://httpd.apache.org/
 .. _Lighthttpd: http://www.lighttpd.net/
