@@ -5,6 +5,9 @@ Django Sendfile 2
 .. image:: https://travis-ci.org/moggers87/django-sendfile2.svg?branch=master
    :target: https://travis-ci.org/moggers87/django-sendfile2
 
+- Download: https://pypi.org/project/django-sendfile2/
+- Source: https://github.com/moggers87/django-sendfile2
+
 This is a wrapper around web-server specific methods for sending files to web
 clients.  This is useful when Django needs to check permissions associated
 files, but does not want to serve the actual bytes of the file itself.  i.e. as
