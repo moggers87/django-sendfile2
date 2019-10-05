@@ -38,13 +38,13 @@ object.
 Backends are specified using the setting `SENDFILE_BACKEND`.  Currently
 available backends are:
 
-* `sendfile.backends.development` - for use with django development server
+* `sendfile.backends.development` - for use with Django development server
   only. DO NOT USE IN PRODUCTION
 * `sendfile.backends.simple` - "simple" backend that uses Django file objects
   to attempt to stream files from disk (note middleware may cause files to be
   loaded fully into memory)
 * `sendfile.backends.xsendfile` - sets X-Sendfile header (as used by
-  mod_xsendfile/apache and lighthttpd)
+  mod_xsendfile/Apache and Lighthttpd)
 * `sendfile.backends.mod_wsgi` - sets Location with 200 code to trigger
   internal redirect (daemon mode mod_wsgi only - see below)
 * `sendfile.backends.nginx` - sets X-Accel-Redirect header to trigger internal
@@ -89,7 +89,7 @@ Development backend
 The Development backend is only meant for use while writing code.  It uses
 Django's static file serving code to do the job, which is only meant for
 development.  It reads the whole file into memory and the sends it down the
-wire - not good for big files, but ok when you are just testing things out.
+wire - not good for big files, but OK when you are just testing things out.
 
 It will work with the Django dev server and anywhere else you can run Django.
 
@@ -124,7 +124,7 @@ embedded mode.  It requires a bit more work to get it to do the same job as
 xsendfile though.  However some may find it easier to setup, as they don't need
 to compile and install mod_xsendfile_.
 
-Firstly there are two more django settings:
+Firstly there are two more Django settings:
 
 * `SENDFILE_ROOT` - this is a directoy where all files that will be used with
   sendfile must be located
@@ -177,11 +177,11 @@ As with the mod_wsgi backend you need to set two extra settings:
   sendfile must be located
 * `SENDFILE_URL` - internal URL prefix for all files served via sendfile
 
-You then need to configure nginx to only allow internal access to the files you
+You then need to configure Nginx to only allow internal access to the files you
 wish to serve.  More details on this `are here
 <https://www.nginx.com/resources/wiki/start/topics/examples/xsendfile/>`_.
 
-For example though, if I use the django settings:
+For example though, if I use the Django settings:
 
 ::
 
@@ -199,7 +199,7 @@ Then the matching location block in nginx.conf would be:
 
 You need to pay attention to whether you have trailing slashes or not on the
 SENDFILE_URL and root values, otherwise you may not get the right URL being
-sent to NGINX and you may get 404s.  You should be able to see what file NGINX
+sent to Nginx and you may get 404s.  You should be able to see what file Nginx
 is trying to load in the error.log if this happens.  From there it should be
 fairly easy to work out what the right settings are.
 
