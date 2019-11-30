@@ -10,7 +10,7 @@ from django.http import HttpResponse, Http404, HttpRequest
 from django.test import TestCase
 from django.utils.encoding import smart_str
 
-from sendfile import sendfile as real_sendfile, _get_sendfile
+from django_sendfile.sendfile import sendfile as real_sendfile, _get_sendfile
 
 
 def sendfile(request, filename, **kwargs):
@@ -42,7 +42,7 @@ class TestSendfile(TempFileTestCase):
     def setUp(self):
         super(TestSendfile, self).setUp()
         # set ourselves to be the sendfile backend
-        settings.SENDFILE_BACKEND = 'sendfile.tests'
+        settings.SENDFILE_BACKEND = 'django_sendfile.tests'
         _get_sendfile.clear()
 
     def _get_readme(self):
@@ -105,7 +105,7 @@ class TestXSendfileBackend(TempFileTestCase):
 
     def setUp(self):
         super(TestXSendfileBackend, self).setUp()
-        settings.SENDFILE_BACKEND = 'sendfile.backends.xsendfile'
+        settings.SENDFILE_BACKEND = 'django_sendfile.backends.xsendfile'
         _get_sendfile.clear()
 
     def test_correct_file_in_xsendfile_header(self):
@@ -125,7 +125,7 @@ class TestNginxBackend(TempFileTestCase):
 
     def setUp(self):
         super(TestNginxBackend, self).setUp()
-        settings.SENDFILE_BACKEND = 'sendfile.backends.nginx'
+        settings.SENDFILE_BACKEND = 'django_sendfile.backends.nginx'
         settings.SENDFILE_ROOT = self.TEMP_FILE_ROOT
         settings.SENDFILE_URL = '/private'
         _get_sendfile.clear()
@@ -147,7 +147,7 @@ class TestModWsgiBackend(TempFileTestCase):
 
     def setUp(self):
         super(TestModWsgiBackend, self).setUp()
-        settings.SENDFILE_BACKEND = 'sendfile.backends.mod_wsgi'
+        settings.SENDFILE_BACKEND = 'django_sendfile.backends.mod_wsgi'
         settings.SENDFILE_ROOT = self.TEMP_FILE_ROOT
         settings.SENDFILE_URL = '/private'
         _get_sendfile.clear()

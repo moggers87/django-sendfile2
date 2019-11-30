@@ -9,15 +9,6 @@ from django.http import Http404
 from django.utils.encoding import force_str
 from django.utils.http import urlquote
 
-from ._version import get_versions
-
-__version__ = get_versions()['version']
-del get_versions
-
-
-# old versions of django-sendfile have this, so keep it for compatibility
-VERSION = tuple(__version__.split("+")[0].split("."))
-
 
 def _lazy_load(fn):
     _cached = []

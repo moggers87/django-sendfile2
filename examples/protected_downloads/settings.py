@@ -87,13 +87,13 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.messages',
     'download',
-    'sendfile',
+    'django_sendfile',
 )
 
 
 # SENDFILE settings
-SENDFILE_BACKEND = 'sendfile.backends.development'
-# SENDFILE_BACKEND = 'sendfile.backends.xsendfile'
-# SENDFILE_BACKEND = 'sendfile.backends.nginx'
+SENDFILE_BACKEND = 'django_sendfile.backends.development'
+# SENDFILE_BACKEND = 'django_sendfile.backends.xsendfile'
+# SENDFILE_BACKEND = 'django_sendfile.backends.nginx'
 SENDFILE_ROOT = os.path.join(PROJECT_ROOT, 'protected')
 SENDFILE_URL = '/protected'
