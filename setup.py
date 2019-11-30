@@ -17,7 +17,7 @@ setup(
     url='https://github.com/moggers87/django-sendfile2',
     license='BSD',
 
-    install_requires=['django', 'six'],
+    install_requires=['django'],
     packages=['sendfile', 'sendfile.backends'],
     package_dir={
         'sendfile': 'sendfile',
@@ -35,8 +35,6 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
