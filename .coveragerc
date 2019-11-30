@@ -1,0 +1,6 @@
+[run]
+branch = true
+source = sendfile
+omit =
+    */_version.py
+    */tests.py

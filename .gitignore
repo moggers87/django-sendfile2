@@ -10,3 +10,5 @@
 /build
 .Python
 .tox
+/examples/protected_downloads/htmlcov
+/examples/protected_downloads/.coverage

@@ -11,9 +11,14 @@ python:
   - pypy2.7-6.0
   - pypy3.5-6.0
 
-install: travis_retry pip install -q tox
 
-script: tox -e py  # run tox for the current version of Python
+install: pip install tox-travis codecov
+
+script: tox
+
+after_success:
+    - cd examples/protected_downloads
+    - codecov
 
 matrix:
   include:
