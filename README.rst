@@ -22,7 +22,7 @@ object.
 
 ::
 
-    from sendfile import sendfile
+    from django_sendfile import sendfile
     
     # send myfile.pdf to user
     return sendfile(request, '/home/john/myfile.pdf')

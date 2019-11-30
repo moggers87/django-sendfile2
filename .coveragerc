@@ -1,6 +1,6 @@
 [run]
 branch = true
-source = sendfile
+source = django_sendfile
 omit =
     */_version.py
     */tests.py

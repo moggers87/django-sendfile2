@@ -18,13 +18,13 @@ setup(
     license='BSD',
 
     install_requires=['django'],
-    packages=['sendfile', 'sendfile.backends'],
+    packages=['django_sendfile', 'django_sendfile.backends'],
     package_dir={
-        'sendfile': 'sendfile',
-        'sendfile.backends': 'sendfile/backends',
+        'django_sendfile': 'django_sendfile',
+        'django_sendfile.backends': 'django_sendfile/backends',
     },
     package_data={
-        'sendfile': ['testfile.txt'],
+        'django_sendfile': ['testfile.txt'],
     },
 
     zip_safe=True,

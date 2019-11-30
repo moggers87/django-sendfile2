@@ -4,7 +4,7 @@ from django.http import HttpResponseForbidden
 from django.db.models import Q
 from django.template import RequestContext
 
-from sendfile import sendfile
+from django_sendfile import sendfile
 
 from .models import Download
 
