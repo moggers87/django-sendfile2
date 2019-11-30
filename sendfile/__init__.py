@@ -6,9 +6,8 @@ import unicodedata
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.http import Http404
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.http import urlquote
-import six
 
 from ._version import get_versions
 
@@ -87,12 +86,9 @@ def sendfile(request, filename, attachment=False, attachment_filename=None,
         attachment_filename = os.path.basename(filename)
 
     if attachment_filename:
-        attachment_filename = force_text(attachment_filename)
+        attachment_filename = force_str(attachment_filename)
         ascii_filename = unicodedata.normalize('NFKD', attachment_filename)
-        ascii_filename = ascii_filename.encode('ascii', 'ignore')
-
-        if six.PY3:
-            ascii_filename = ascii_filename.decode()
+        ascii_filename = ascii_filename.encode('ascii', 'ignore').decode()
         parts.append('filename="%s"' % ascii_filename)
 
         if ascii_filename != attachment_filename:

@@ -1,18 +1,16 @@
 # coding=utf-8
 
-from django.conf import settings
-from django.test import TestCase
-from django.http import HttpResponse, Http404, HttpRequest
-from django.utils.encoding import smart_str
-import os.path
 from tempfile import mkdtemp
+from urllib.parse import unquote
+import os.path
 import shutil
-from sendfile import sendfile as real_sendfile, _get_sendfile
 
-try:
-    from urllib.parse import unquote
-except ImportError:
-    from urllib import unquote
+from django.conf import settings
+from django.http import HttpResponse, Http404, HttpRequest
+from django.test import TestCase
+from django.utils.encoding import smart_str
+
+from sendfile import sendfile as real_sendfile, _get_sendfile
 
 
 def sendfile(request, filename, **kwargs):
