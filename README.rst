@@ -66,12 +66,12 @@ etc is done elsewhere.
 Supported Django Versions
 =========================
 
-Django 1.11, 2.1, and 2.2 are currently supported by this library.
+Django 2.1, 2.2, and 3.0 are currently supported by this library.
 
 Supported Python Versions
 =========================
 
-Python 2.7, 3.5, 3.6. 3.7, and 3.8 are currently supported by this library.
+Python 3.5, 3.6. 3.7, and 3.8 are currently supported by this library.
 
 Installation
 ============
