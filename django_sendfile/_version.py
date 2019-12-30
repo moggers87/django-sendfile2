@@ -43,7 +43,7 @@ def get_config():
     cfg.style = "pep440"
     cfg.tag_prefix = "v"
     cfg.parentdir_prefix = "django-sendfile2-"
-    cfg.versionfile_source = "sendfile/_version.py"
+    cfg.versionfile_source = "django_sendfile/_version.py"
     cfg.verbose = False
     return cfg
 
