@@ -1,6 +1,15 @@
 Changelog
 ---------
 
+
+0.5.1
+=====
+
+:release-date: 2019-12-30
+
+- Fix issue with versioneer not being updated about the package name change
+   - tox now does a proper sdist and install to avoid this in future
+
 0.5.0
 =====
 
