@@ -43,7 +43,7 @@ class TestSendfile(TempFileTestCase):
         super(TestSendfile, self).setUp()
         # set ourselves to be the sendfile backend
         settings.SENDFILE_BACKEND = 'django_sendfile.tests'
-        _get_sendfile.clear()
+        _get_sendfile.cache_clear()
 
     def _get_readme(self):
         return self.ensure_file('testfile.txt')
@@ -106,7 +106,7 @@ class TestXSendfileBackend(TempFileTestCase):
     def setUp(self):
         super(TestXSendfileBackend, self).setUp()
         settings.SENDFILE_BACKEND = 'django_sendfile.backends.xsendfile'
-        _get_sendfile.clear()
+        _get_sendfile.cache_clear()
 
     def test_correct_file_in_xsendfile_header(self):
         filepath = self.ensure_file('readme.txt')
@@ -128,7 +128,7 @@ class TestNginxBackend(TempFileTestCase):
         settings.SENDFILE_BACKEND = 'django_sendfile.backends.nginx'
         settings.SENDFILE_ROOT = self.TEMP_FILE_ROOT
         settings.SENDFILE_URL = '/private'
-        _get_sendfile.clear()
+        _get_sendfile.cache_clear()
 
     def test_correct_url_in_xaccelredirect_header(self):
         filepath = self.ensure_file('readme.txt')
@@ -150,7 +150,7 @@ class TestModWsgiBackend(TempFileTestCase):
         settings.SENDFILE_BACKEND = 'django_sendfile.backends.mod_wsgi'
         settings.SENDFILE_ROOT = self.TEMP_FILE_ROOT
         settings.SENDFILE_URL = '/private'
-        _get_sendfile.clear()
+        _get_sendfile.cache_clear()
 
     def test_correct_url_in_location_header(self):
         filepath = self.ensure_file('readme.txt')
