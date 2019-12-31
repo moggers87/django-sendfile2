@@ -1,3 +1,4 @@
+from functools import lru_cache
 from importlib import import_module
 from mimetypes import guess_type
 import os.path
@@ -10,23 +11,7 @@ from django.utils.encoding import force_str
 from django.utils.http import urlquote
 
 
-def _lazy_load(fn):
-    _cached = []
-
-    def _decorated():
-        if not _cached:
-            _cached.append(fn())
-        return _cached[0]
-
-    def clear():
-        while _cached:
-            _cached.pop()
-
-    _decorated.clear = clear
-    return _decorated
-
-
-@_lazy_load
+@lru_cache(maxsize=None)
 def _get_sendfile():
     backend = getattr(settings, 'SENDFILE_BACKEND', None)
     if not backend:
