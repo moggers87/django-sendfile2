@@ -19,6 +19,12 @@ setup(
 
     install_requires=['django'],
     packages=['django_sendfile', 'django_sendfile.backends'],
+    extras_require={
+        "docs": [
+            "sphinx",
+            "sphinx_rtd_theme",
+        ],
+    },
     package_dir={
         'django_sendfile': 'django_sendfile',
         'django_sendfile.backends': 'django_sendfile/backends',
@@ -26,7 +32,6 @@ setup(
     package_data={
         'django_sendfile': ['testfile.txt'],
     },
-
     zip_safe=True,
     classifiers=[
         'Development Status :: 4 - Beta',
