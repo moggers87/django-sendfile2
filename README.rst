@@ -38,16 +38,16 @@ object.
 Backends are specified using the setting `SENDFILE_BACKEND`.  Currently
 available backends are:
 
-* `sendfile.backends.development` - for use with Django development server
+* `django_sendfile.backends.development` - for use with Django development server
   only. DO NOT USE IN PRODUCTION
-* `sendfile.backends.simple` - "simple" backend that uses Django file objects
+* `django_sendfile.backends.simple` - "simple" backend that uses Django file objects
   to attempt to stream files from disk (note middleware may cause files to be
   loaded fully into memory)
-* `sendfile.backends.xsendfile` - sets X-Sendfile header (as used by
+* `django_sendfile.backends.xsendfile` - sets X-Sendfile header (as used by
   mod_xsendfile/Apache and Lighthttpd)
-* `sendfile.backends.mod_wsgi` - sets Location with 200 code to trigger
+* `django_sendfile.backends.mod_wsgi` - sets Location with 200 code to trigger
   internal redirect (daemon mode mod_wsgi only - see below)
-* `sendfile.backends.nginx` - sets X-Accel-Redirect header to trigger internal
+* `django_sendfile.backends.nginx` - sets X-Accel-Redirect header to trigger internal
   redirect to file
 
 If you want to write your own backend simply create a module with a `sendfile`
