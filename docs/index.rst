@@ -6,10 +6,17 @@
 Welcome to django-sendfile2's documentation!
 ============================================
 
+.. include:: ../README.rst
+  :start-after: inclusion-marker-do-not-remove-start
+  :end-before: inclusion-marker-do-not-remove-end
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
+   getting-started
+   backends
+   custom-backend
    django_sendfile2 API Guide <modules>
 
 
