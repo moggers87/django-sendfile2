@@ -18,6 +18,7 @@ Welcome to django-sendfile2's documentation!
    backends
    custom-backend
    django_sendfile2 API Guide <modules>
+   security
 
 
 Indices and tables
