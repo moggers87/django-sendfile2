@@ -22,25 +22,25 @@ def _get_sendfile():
 
 def sendfile(request, filename, attachment=False, attachment_filename=None,
              mimetype=None, encoding=None):
-    '''
-    create a response to send file using backend configured in SENDFILE_BACKEND
+    """
+    Create a response to send file using backend configured in ``SENDFILE_BACKEND``
 
-    Filename is the absolute path to the file to send.
+    ``filename`` is the absolute path to the file to send.
 
-    If attachment is True the content-disposition header will be set accordingly.
+    If ``attachment`` is ``True`` the ``Content-Disposition`` header will be set accordingly.
     This will typically prompt the user to download the file, rather
-    than view it. But even if False, the user may still be prompted, depending
+    than view it. But even if ``False``, the user may still be prompted, depending
     on the browser capabilities and configuration.
 
-    The content-disposition filename depends on the value of attachment_filename:
+    The ``Content-Disposition`` filename depends on the value of ``attachment_filename``:
 
-        None (default): Same as filename
-        False: No content-disposition filename
-        String: Value used as filename
+        ``None`` (default): Same as ``filename``
+        ``False``: No ``Content-Disposition`` filename
+        ``String``: Value used as filename
 
-    If no mimetype or encoding are specified, then they will be guessed via the
-    filename (using the standard python mimetypes module)
-    '''
+    If neither ``mimetype`` or ``encoding`` are specified, then they will be guessed via the
+    filename (using the standard Python mimetypes module)
+    """
     _sendfile = _get_sendfile()
 
     if not os.path.exists(filename):

@@ -1,5 +1,5 @@
-from .sendfile import sendfile  # noqa
 from ._version import get_versions
+from .utils import sendfile  # noqa
 
 __version__ = get_versions()['version']
 del get_versions
