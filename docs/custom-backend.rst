@@ -24,5 +24,6 @@ Assuming the module is in your Python path and named ``myModule``, you'd set ``S
 .. warning::
 
     Don't get confused between this ``sendfile`` callable and
-    :py:func:`django_sendfile.sendfile`. The latter accepts slightly different
-    arguments and takes care of various ``Content-*`` headers.
+    :py:func:`~django_sendfile.utils.sendfile` used in your views. The latter
+    accepts slightly different arguments and takes care of various
+    ``Content-*`` headers.

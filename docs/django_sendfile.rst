@@ -13,7 +13,7 @@ Submodules
 
 .. toctree::
 
-   django_sendfile.sendfile
+   django_sendfile.utils
 
 Module contents
 ---------------

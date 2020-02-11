@@ -1,4 +1,4 @@
-from .sendfile import sendfile  # noqa
+from .utils import sendfile  # noqa
 from ._version import get_versions
 
 __version__ = get_versions()['version']

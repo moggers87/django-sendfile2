@@ -10,7 +10,7 @@ from django.http import HttpResponse, Http404, HttpRequest
 from django.test import TestCase
 from django.utils.encoding import smart_str
 
-from django_sendfile.sendfile import sendfile as real_sendfile, _get_sendfile
+from .utils import sendfile as real_sendfile, _get_sendfile
 
 
 def sendfile(request, filename, **kwargs):

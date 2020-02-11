@@ -1,7 +1,7 @@
-django\_sendfile.sendfile module
+django\_sendfile.utils module
 ================================
 
-.. automodule:: django_sendfile.sendfile
+.. automodule:: django_sendfile.utils
    :members:
    :undoc-members:
    :show-inheritance:
