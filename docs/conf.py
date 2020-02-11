@@ -16,12 +16,13 @@
 
 from django.conf import settings
 
+import django_sendfile
+
 settings.configure(
     DEBUG=False,
     INSTALLED_APPS=(),
 )
 
-import django_sendfile
 
 # -- Project information -----------------------------------------------------
 

@@ -5,7 +5,6 @@ except ImportError:
 
 import versioneer
 
-
 setup(
     name='django-sendfile2',
     version=versioneer.get_version(),

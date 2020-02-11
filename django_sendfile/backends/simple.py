@@ -1,4 +1,4 @@
-from email.utils import parsedate_tz, mktime_tz
+from email.utils import mktime_tz, parsedate_tz
 import os
 import re
 import stat

@@ -6,11 +6,12 @@ import os.path
 import shutil
 
 from django.conf import settings
-from django.http import HttpResponse, Http404, HttpRequest
+from django.http import Http404, HttpRequest, HttpResponse
 from django.test import TestCase
 from django.utils.encoding import smart_str
 
-from .utils import sendfile as real_sendfile, _get_sendfile
+from .utils import _get_sendfile
+from .utils import sendfile as real_sendfile
 
 
 def sendfile(request, filename, **kwargs):
