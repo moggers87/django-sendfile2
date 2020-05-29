@@ -73,12 +73,20 @@ def sendfile(request, filename, attachment=False, attachment_filename=None,
 
     response['Content-Disposition'] = '; '.join(parts)
 
-    response['Content-length'] = os.path.getsize(filename)
-    response['Content-Type'] = mimetype
+    # Avoid rewriting existing headers.
+    length_header = 'Content-Length'
+    if response.get(length_header) is None:
+        response[length_header] = os.path.getsize(filename)
+
+    mimetype_header = 'Content-Type'
+    if response.get(mimetype_header) is None:
+        response[mimetype_header] = mimetype
 
     if not encoding:
         encoding = guessed_encoding
-    if encoding:
-        response['Content-Encoding'] = encoding
+
+    content_header = 'Content-Encoding'
+    if encoding and not response.get(content_header) is None:
+        response[content_header] = encoding
 
     return response
