@@ -9,7 +9,8 @@ setup(
     name='django-sendfile2',
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
-    description='Abstraction to offload file uploads to web-server (e.g. Apache with mod_xsendfile) once Django has checked permissions etc.',
+    description='Abstraction to offload file uploads to web-server (e.g. Apache with mod_xsendfile)'
+                ' once Django has checked permissions etc.',
     long_description=open('README.rst').read(),
     author='Matt Molyneaux',
     author_email='moggers87+git@moggers87.co.uk',
