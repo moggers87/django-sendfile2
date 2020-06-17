@@ -1,6 +1,14 @@
 Changelog
 ---------
 
+0.6.0
+=====
+
+:release-date: 2020-06-17
+
+- Fixed issue where django-sendfile could serve *any* file, even if it was
+  outside ``SENDFILE_ROOT``. ``SEDNFILE_ROOT`` is now required for all
+  backends.
 
 0.5.1
 =====
