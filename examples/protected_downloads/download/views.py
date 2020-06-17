@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render
-from django.template import RequestContext
 
 from django_sendfile import sendfile
 
@@ -25,10 +24,16 @@ def _auth_download(request, download):
 
 def download_list(request):
     downloads = Download.objects.all()
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         downloads = downloads.filter(Q(is_public=True) | Q(users=request.user))
     else:
         downloads = downloads.filter(is_public=True)
     return render(request, 'download/download_list.html',
-                  {'download_list': downloads},
-                  context_instance=RequestContext(request))
+                  {'download_list': downloads})
+
+
+def direct_download(request, filename=None):
+    if not filename:
+        filename = request.GET.get("filename")
+
+    return sendfile(request, filename)

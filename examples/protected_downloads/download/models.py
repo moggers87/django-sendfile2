@@ -20,7 +20,7 @@ class Download(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('download', [self.pk], {})
+        return reverse('download', kwargs={"download_id": self.pk})
 
     class Meta:
         app_label = "download"

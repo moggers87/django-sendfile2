@@ -13,3 +13,4 @@
 .tox
 /examples/protected_downloads/htmlcov
 /examples/protected_downloads/.coverage
+/examples/protected_downloads/protected

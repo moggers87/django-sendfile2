@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from django.http import HttpResponse
 
-from ._internalredirect import _convert_file_to_url
+from ..utils import _convert_file_to_url
 
 
 def sendfile(request, filename, **kwargs):

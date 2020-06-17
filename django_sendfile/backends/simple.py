@@ -1,25 +1,29 @@
 from email.utils import mktime_tz, parsedate_tz
-import os
 import re
-import stat
 
 from django.core.files.base import File
 from django.http import HttpResponse, HttpResponseNotModified
 from django.utils.http import http_date
 
 
-def sendfile(request, filename, **kwargs):
-    # Respect the If-Modified-Since header.
-    statobj = os.stat(filename)
+def sendfile(request, filepath, **kwargs):
+    '''Use the SENDFILE_ROOT value composed with the path arrived as argument
+    to build an absolute path with which resolve and return the file contents.
 
+    If the path points to a file out of the root directory (should cover both
+    situations with '..' and symlinks) then a 404 is raised.
+    '''
+    statobj = filepath.stat()
+
+    # Respect the If-Modified-Since header.
     if not was_modified_since(request.META.get('HTTP_IF_MODIFIED_SINCE'),
-                              statobj[stat.ST_MTIME], statobj[stat.ST_SIZE]):
+                              statobj.st_mtime, statobj.st_size):
         return HttpResponseNotModified()
 
-    with File(open(filename, 'rb')) as f:
+    with File(filepath.open('rb')) as f:
         response = HttpResponse(f.chunks())
 
-    response["Last-Modified"] = http_date(statobj[stat.ST_MTIME])
+    response["Last-Modified"] = http_date(statobj.st_mtime)
     return response
 
 

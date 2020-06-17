@@ -43,10 +43,8 @@ embedded mode.  It requires a bit more work to get it to do the same job as
 xsendfile though.  However some may find it easier to setup, as they don't need
 to compile and install mod_xsendfile_.
 
-Firstly there are two more Django settings:
+Firstly there one more Django setting that needs to be given:
 
-* ``SENDFILE_ROOT`` - this is a directoy where all files that will be used with
-  sendfile must be located
 * ``SENDFILE_URL`` - internal URL prefix for all files served via sendfile
 
 These settings are needed as this backend makes mod_wsgi_ send an internal
@@ -93,10 +91,8 @@ Nginx backend
 
 :py:mod:`django_sendfile.backends.nginx`
 
-As with the mod_wsgi backend you need to set two extra settings:
+As with the mod_wsgi backend you need to set an extra settings:
 
-* ``SENDFILE_ROOT`` - this is a directory where all files that will be used with
-  sendfile must be located
 * ``SENDFILE_URL`` - internal URL prefix for all files served via sendfile
 
 You then need to configure Nginx to only allow internal access to the files you
@@ -140,12 +136,6 @@ configure mod_xsendfile_, but that should be as simple as:
     XSendFile On
 
 In your virtualhost file/conf file.
-
-As with the mod_wsgi backend you need to set two extra settings:
-
-* ``SENDFILE_ROOT`` - this is a directory where all files that will be used with
-  sendfile must be located
-* ``SENDFILE_URL`` - internal URL prefix for all files served via sendfile
 
 
 .. _mod_xsendfile: https://tn123.org/mod_xsendfile/

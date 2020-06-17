@@ -17,9 +17,14 @@ And then add ``django_sendfile`` to ``INSTALLED_APPS`` in your settings module.
     It is not strictly nessessary to have django_sendfile in
     ``INSTALLED_APPS``, but this may change in future.
 
-You will also need to select a backend via ``SENDFILE_BACKEND`` in your
-settings module. Additionally, you may need to set ``SENDFILE_URL`` and
-``SENDFILE_ROOT``. See the :doc:`backends` documentation for more details.
+
+You will need to have the following set in your settings module:
+
+* ``SENDFILE_BACKEND`` - the dotted module notation of the backend you wish to use
+* ``SENDFILE_ROOT`` - the directory you wish to serve files from
+
+Additionally, you may need to set ``SENDFILE_URL`` . See the :doc:`backends`
+documentation for more details.
 
 
 Use In Views
