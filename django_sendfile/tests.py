@@ -2,7 +2,7 @@
 
 from tempfile import mkdtemp
 from urllib.parse import unquote
-import os.path
+import os
 import shutil
 
 from django.conf import settings
@@ -25,7 +25,9 @@ class TempFileTestCase(TestCase):
 
     def setUp(self):
         super(TempFileTestCase, self).setUp()
-        self.TEMP_FILE_ROOT = mkdtemp()
+        self.TEMP_FILE = mkdtemp()
+        self.TEMP_FILE_ROOT = os.path.join(self.TEMP_FILE, "root")
+        os.mkdir(self.TEMP_FILE_ROOT)
         self.setSendfileRoot(self.TEMP_FILE_ROOT)
 
     def tearDown(self):
@@ -139,7 +141,7 @@ class TestSimpleSendfileBackend(TempFileTestCase):
         self.assertTrue(response is not None)
 
     def test_sensible_file_access_in_simplesendfile(self):
-        filepath = self.ensure_file('../../../etc/passwd')
+        filepath = self.ensure_file('../passwd')
         with self.assertRaises(Http404):
             real_sendfile(HttpRequest(), filepath)
 
