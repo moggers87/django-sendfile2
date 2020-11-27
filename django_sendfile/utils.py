@@ -69,7 +69,6 @@ def _sanitize_path(filepath):
 def sendfile(
     request,
     filename,
-    *,
     attachment=False,
     attachment_filename=None,
     check_exist=True,
