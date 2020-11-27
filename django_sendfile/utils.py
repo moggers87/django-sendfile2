@@ -4,6 +4,7 @@ from mimetypes import guess_type
 from pathlib import Path, PurePath
 from urllib.parse import quote
 import logging
+import os
 import unicodedata
 
 from django.conf import settings
@@ -13,6 +14,8 @@ from django.utils.encoding import force_str
 from django.utils.http import urlquote
 
 logger = logging.getLogger(__name__)
+
+_guess = object()
 
 
 @lru_cache(maxsize=None)
@@ -63,8 +66,17 @@ def _sanitize_path(filepath):
     return filepath_abs
 
 
-def sendfile(request, filename, *, attachment=False, attachment_filename=None,
-             mimetype=None, encoding=None):
+def sendfile(
+    request,
+    filename,
+    *,
+    attachment=False,
+    attachment_filename=None,
+    check_exist=True,
+    encoding=_guess,
+    filesize=_guess,
+    mimetype=_guess,
+):
     """
     Create a response to send file using backend configured in ``SENDFILE_BACKEND``
 
@@ -81,23 +93,29 @@ def sendfile(request, filename, *, attachment=False, attachment_filename=None,
         ``False``: No ``Content-Disposition`` filename
         ``String``: Value used as filename
 
-    If neither ``mimetype`` or ``encoding`` are specified, then they will be guessed via the
-    filename (using the standard Python mimetypes module)
+    Any of ``encoding``, ``filesize and ``mimetype`` left to _guess will be guessed via the
+    filename (using the standard python mimetypes`and os.path modules).
+
+    Any of ``encoding``, ``filesize`` and ``mimetype`` set to None will not be set into the
+    response headers.
     """
     filepath_obj = _sanitize_path(filename)
     logger.debug('filename \'%s\' requested "\
         "-> filepath \'%s\' obtained', filename, filepath_obj)
     _sendfile = _get_sendfile()
 
-    if not filepath_obj.exists():
+    if check_exist and not filepath_obj.exists():
         raise Http404('"%s" does not exist' % filepath_obj)
 
-    guessed_mimetype, guessed_encoding = guess_type(str(filepath_obj))
-    if mimetype is None:
-        if guessed_mimetype:
-            mimetype = guessed_mimetype
-        else:
-            mimetype = 'application/octet-stream'
+    if filesize is _guess:
+        filesize = os.path.getsize(filename)
+
+    if mimetype is _guess or encoding is _guess:
+        guessed_mimetype, guessed_encoding = guess_type(str(filepath_obj))
+        if mimetype is _guess:
+            mimetype = guessed_mimetype or 'application/octet-stream'
+        if encoding is _guess:
+            encoding = guessed_encoding
 
     response = _sendfile(request, filepath_obj, mimetype=mimetype)
 
@@ -122,9 +140,11 @@ def sendfile(request, filename, *, attachment=False, attachment_filename=None,
     response['Content-length'] = filepath_obj.stat().st_size
     response['Content-Type'] = mimetype
 
-    if not encoding:
-        encoding = guessed_encoding
-    if encoding:
+    if encoding is not None:
         response['Content-Encoding'] = encoding
+    if filesize is not None:
+        response['Content-Length'] = filesize
+    if mimetype is not None:
+        response['Content-Type'] = mimetype
 
     return response
