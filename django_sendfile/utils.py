@@ -63,7 +63,7 @@ def _sanitize_path(filepath):
     return filepath_abs
 
 
-def sendfile(request, filename, attachment=False, attachment_filename=None,
+def sendfile(request, filename, *, attachment=False, attachment_filename=None,
              mimetype=None, encoding=None):
     """
     Create a response to send file using backend configured in ``SENDFILE_BACKEND``
