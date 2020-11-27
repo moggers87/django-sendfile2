@@ -29,7 +29,7 @@ def _get_sendfile():
 
 def _convert_file_to_url(path):
     try:
-        url_root = PurePath(getattr(settings, "SENDFILE_URL", None))
+        url_root = PurePath(getattr(settings, 'SENDFILE_URL', None))
     except TypeError:
         return path
 

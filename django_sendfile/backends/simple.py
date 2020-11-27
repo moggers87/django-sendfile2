@@ -23,7 +23,7 @@ def sendfile(request, filepath, **kwargs):
     with File(filepath.open('rb')) as f:
         response = HttpResponse(f.chunks())
 
-    response["Last-Modified"] = http_date(statobj.st_mtime)
+    response['Last-Modified'] = http_date(statobj.st_mtime)
     return response
 
 
