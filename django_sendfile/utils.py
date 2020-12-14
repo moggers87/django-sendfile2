@@ -92,8 +92,8 @@ def sendfile(request, filename, attachment=False, attachment_filename=None,
     if not filepath_obj.exists():
         raise Http404('"%s" does not exist' % filepath_obj)
 
-    guessed_mimetype, guessed_encoding = guess_type(str(filepath_obj))
     if mimetype is None:
+        guessed_mimetype, guessed_encoding = guess_type(str(filepath_obj))
         if guessed_mimetype:
             mimetype = guessed_mimetype
         else:
