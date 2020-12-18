@@ -29,10 +29,11 @@ jobs:
       - name: Run tox
         run: tox
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          file: examples/protected_downloads/.coverage
-          verbose: true
+        run: |
+          pip install codecov
+          codecov
+          cat coverage.xml
+        working-directory: examples/protected_downloads/
 
   misc:
     runs-on: ubuntu-latest
