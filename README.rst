@@ -2,8 +2,8 @@
 Django Sendfile 2
 =================
 
-.. image:: https://travis-ci.org/moggers87/django-sendfile2.svg?branch=master
-   :target: https://travis-ci.org/moggers87/django-sendfile2
+.. image:: https://github.com/moggers87/django-sendfile2/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/moggers87/django-sendfile2/actions/workflows/tests.yml
 
 .. inclusion-marker-do-not-remove-start
 
@@ -22,12 +22,12 @@ cases where you need Django to do some work before serving the actual file.
 Supported Python Versions
 =========================
 
-Python 3.5, 3.6. 3.7, and 3.8 are currently supported by this library.
+Python 3.5, 3.6. 3.7, 3.8, and 3.9 are currently supported by this library.
 
 Supported Django Versions
 =========================
 
-Django 2.1, 2.2, and 3.0 are currently supported by this library.
+Django 2.2, 3.0, and 3.1 are currently supported by this library.
 
 Fork
 ====
