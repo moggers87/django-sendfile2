@@ -30,7 +30,7 @@ Python 3.5, 3.6. 3.7, 3.8, and 3.9 are currently supported by this library.
 Supported Django Versions
 =========================
 
-Django 2.2, 3.0, and 3.1 are currently supported by this library.
+Django 2.2, 3.1, and 3.2 are currently supported by this library.
 
 Fork
 ====
