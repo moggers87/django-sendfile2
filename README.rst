@@ -4,6 +4,9 @@ Django Sendfile 2
 
 .. image:: https://github.com/moggers87/django-sendfile2/actions/workflows/tests.yml/badge.svg
    :target: https://github.com/moggers87/django-sendfile2/actions/workflows/tests.yml
+.. image:: https://readthedocs.org/projects/django-sendfile2/badge/?version=latest
+   :target: https://django-sendfile2.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 .. inclusion-marker-do-not-remove-start
 
