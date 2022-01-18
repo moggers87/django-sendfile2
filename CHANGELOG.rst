@@ -1,6 +1,16 @@
 Changelog
 ---------
 
+0.6.1
+=====
+
+:release-date: 2021-01-18
+
+- Fixed Django 4.0 compatibility
+- Add support for Python 3.10
+- Remove support for Python 3.5 and 3.6
+- Remove support for Django 3.1
+
 0.6.0
 =====
 
