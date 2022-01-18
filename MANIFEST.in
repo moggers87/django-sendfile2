@@ -3,3 +3,4 @@ global-exclude *.py[co]
 global-exclude __pycache__
 include versioneer.py
 include sendfile/_version.py
+include django_sendfile/_version.py
