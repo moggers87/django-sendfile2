@@ -2,7 +2,7 @@ from functools import lru_cache
 from importlib import import_module
 from mimetypes import guess_type
 from pathlib import Path, PurePath
-from urllib.parse import quote, quote_plus
+from urllib.parse import quote
 import logging
 import unicodedata
 
@@ -112,7 +112,7 @@ def sendfile(request, filename, attachment=False, attachment_filename=None,
         parts.append('filename="%s"' % ascii_filename)
 
         if ascii_filename != attachment_filename:
-            quoted_filename = quote_plus(attachment_filename)
+            quoted_filename = quote(attachment_filename)
             parts.append('filename*=UTF-8\'\'%s' % quoted_filename)
 
     response['Content-Disposition'] = '; '.join(parts)

@@ -123,6 +123,15 @@ class TestSendfile(TempFileTestCase):
         self.assertEqual('attachment; filename="tests.txt"; filename*=UTF-8\'\'test%E2%80%99s.txt',
                          response['Content-Disposition'])
 
+    def test_attachment_filename_with_space(self):
+        response = real_sendfile(HttpRequest(), self._get_readme(), attachment=True,
+                                 attachment_filename='space test’s.txt')
+        self.assertTrue(response is not None)
+        self.assertEqual(
+            'attachment; filename="space tests.txt"; filename*=UTF-8\'\'space%20test%E2%80%99s.txt',
+            response['Content-Disposition']
+        )
+
 
 class TestSimpleSendfileBackend(TempFileTestCase):
 
