@@ -132,6 +132,33 @@ class TestSendfile(TempFileTestCase):
             response['Content-Disposition']
         )
 
+    def test_cve_2022_36359(self):
+        # test that we're not vulnerable to cve-2022-36359.  data from
+        # https://github.com/django/django/commit/bd062445cffd3f6cc6dcd20d13e2abed818fa173
+        tests = [
+            (
+                'multi-part-one";\" dummy".txt',
+                r"multi-part-one\";\" dummy\".txt"
+            ),
+            (
+                'multi-part-one\\";\" dummy".txt',
+                r"multi-part-one\\\";\" dummy\".txt"
+            ),
+            (
+                'multi-part-one\\";\\\" dummy".txt',
+                r"multi-part-one\\\";\\\" dummy\".txt"
+            ),
+        ]
+        for filename, escaped in tests:
+            with self.subTest(filename=filename, escaped=escaped):
+                response = real_sendfile(HttpRequest(), self._get_readme(), attachment=True,
+                                         attachment_filename=filename)
+                self.assertIsNotNone(response)
+                self.assertEqual(
+                    f'attachment; filename="{escaped}"',
+                    response['Content-Disposition']
+                )
+
 
 class TestSimpleSendfileBackend(TempFileTestCase):
 

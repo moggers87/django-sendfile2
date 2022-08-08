@@ -106,7 +106,7 @@ def sendfile(request, filename, attachment=False, attachment_filename=None,
         attachment_filename = filepath_obj.name
 
     if attachment_filename:
-        attachment_filename = str(attachment_filename)
+        attachment_filename = str(attachment_filename).replace("\\", "\\\\").replace('"', r"\"")
         ascii_filename = unicodedata.normalize('NFKD', attachment_filename)
         ascii_filename = ascii_filename.encode('ascii', 'ignore').decode()
         parts.append('filename="%s"' % ascii_filename)
