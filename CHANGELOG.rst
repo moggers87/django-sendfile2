@@ -1,6 +1,14 @@
 Changelog
 ---------
 
+0.7.0
+=====
+
+:release-date: 2022-08-08
+
+- Fix reflected file download vulnerability
+- Add support for spaces in filenames
+
 0.6.1
 =====
 
