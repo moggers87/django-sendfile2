@@ -18,7 +18,7 @@ jobs:
         python-version: ["3.7", "3.8", "3.9", "3.10", "pypy-3.8"]
         os: [ubuntu-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set up Python
@@ -30,7 +30,7 @@ jobs:
       - name: Run tox
         run: tox
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
         with:
           file: ${{runner.workspace}}/django-sendfile2/examples/protected_downloads/coverage.xml
 
