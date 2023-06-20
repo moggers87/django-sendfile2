@@ -4,7 +4,6 @@ from mimetypes import guess_type
 from pathlib import Path, PurePath
 from urllib.parse import quote
 import logging
-import os
 import unicodedata
 
 from django.conf import settings
@@ -105,7 +104,7 @@ def sendfile(
         raise Http404('"%s" does not exist' % filepath_obj)
 
     if filesize is _guess:
-        filesize = os.path.getsize(filename)
+        filesize = filepath_obj.stat().st_size
 
     if mimetype is _guess or encoding is _guess:
         guessed_mimetype, guessed_encoding = guess_type(str(filepath_obj))
@@ -133,9 +132,6 @@ def sendfile(
             parts.append('filename*=UTF-8\'\'%s' % quoted_filename)
 
     response['Content-Disposition'] = '; '.join(parts)
-
-    response['Content-length'] = filepath_obj.stat().st_size
-    response['Content-Type'] = mimetype
 
     if encoding is not None:
         response['Content-Encoding'] = encoding
