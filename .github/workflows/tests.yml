@@ -3,10 +3,10 @@ name: Tests
 on:
   pull_request:
     branches:
-      - master
+      - main
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: '07 01 * * *'
 
@@ -15,12 +15,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8, 3.9, pypy3]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "pypy-3.8"]
         os: [ubuntu-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install tox
@@ -28,9 +30,9 @@ jobs:
       - name: Run tox
         run: tox
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
         with:
-          file: examples/protected_downloads/.coverage
+          file: ${{runner.workspace}}/django-sendfile2/examples/protected_downloads/coverage.xml
 
   misc:
     runs-on: ubuntu-latest
@@ -38,11 +40,11 @@ jobs:
       matrix:
         tox_env: [lint, isort, docs]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
-          python-version: 3.8
+          python-version: "3.8"
       - name: Install tox
         run: pip install tox
       - name: Run tox

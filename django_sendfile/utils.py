@@ -10,8 +10,6 @@ import unicodedata
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.http import Http404
-from django.utils.encoding import force_str
-from django.utils.http import urlquote
 
 logger = logging.getLogger(__name__)
 
@@ -125,13 +123,13 @@ def sendfile(
         attachment_filename = filepath_obj.name
 
     if attachment_filename:
-        attachment_filename = force_str(attachment_filename)
+        attachment_filename = str(attachment_filename).replace("\\", "\\\\").replace('"', r"\"")
         ascii_filename = unicodedata.normalize('NFKD', attachment_filename)
         ascii_filename = ascii_filename.encode('ascii', 'ignore').decode()
         parts.append('filename="%s"' % ascii_filename)
 
         if ascii_filename != attachment_filename:
-            quoted_filename = urlquote(attachment_filename)
+            quoted_filename = quote(attachment_filename)
             parts.append('filename*=UTF-8\'\'%s' % quoted_filename)
 
     response['Content-Disposition'] = '; '.join(parts)

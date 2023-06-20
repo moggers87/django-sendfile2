@@ -1,1 +1,2 @@
 sendfile/_version.py export-subst
+django_sendfile/_version.py export-subst

@@ -2,8 +2,11 @@
 Django Sendfile 2
 =================
 
-.. image:: https://travis-ci.org/moggers87/django-sendfile2.svg?branch=master
-   :target: https://travis-ci.org/moggers87/django-sendfile2
+.. image:: https://github.com/moggers87/django-sendfile2/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/moggers87/django-sendfile2/actions/workflows/tests.yml
+.. image:: https://readthedocs.org/projects/django-sendfile2/badge/?version=latest
+   :target: https://django-sendfile2.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 .. inclusion-marker-do-not-remove-start
 
@@ -12,7 +15,7 @@ clients.  This is useful when Django needs to check permissions associated
 files, but does not want to serve the actual bytes of the file itself.  i.e. as
 serving large files is not what Django is made for.
 
-Note this should not be used for regular file serving (e.g. css etc), only for
+Note this should not be used for regular file serving (e.g. CSS etc), only for
 cases where you need Django to do some work before serving the actual file.
 
 - Download: https://pypi.org/project/django-sendfile2/
@@ -22,12 +25,12 @@ cases where you need Django to do some work before serving the actual file.
 Supported Python Versions
 =========================
 
-Python 3.5, 3.6. 3.7, and 3.8 are currently supported by this library.
+Python 3.7, 3.8, 3.9, and 3.10 are currently supported by this library.
 
 Supported Django Versions
 =========================
 
-Django 2.1, 2.2, and 3.0 are currently supported by this library.
+Django 2.2, 3.2, and 4.0 are currently supported by this library.
 
 Fork
 ====
