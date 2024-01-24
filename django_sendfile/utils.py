@@ -34,7 +34,11 @@ def _convert_file_to_url(path):
     relpath = path_obj.relative_to(path_root)
     # Python 3.5: Path.resolve() has no `strict` kwarg, so use pathmod from an
     # already instantiated Path object
-    url = relpath._flavour.pathmod.normpath(str(url_root / relpath))
+    if hasattr(relpath._flavour, "pathmod"):
+        url = relpath._flavour.pathmod.normpath(str(url_root / relpath))
+    else:
+         # Python 3.12 doesn't expose pathmod anymore
+        url = relpath._flavour.normpath(str(url_root / relpath))
 
     return quote(str(url))
 
@@ -50,7 +54,11 @@ def _sanitize_path(filepath):
     # get absolute path
     # Python 3.5: Path.resolve() has no `strict` kwarg, so use pathmod from an
     # already instantiated Path object
-    filepath_abs = Path(filepath_obj._flavour.pathmod.normpath(str(path_root / filepath_obj)))
+    if hasattr(filepath_obj._flavour, "pathmod"):
+        filepath_abs = Path(filepath_obj._flavour.pathmod.normpath(str(path_root / filepath_obj)))
+    else:
+        # Python 3.12 doesn't have "pathmod" anymore
+        filepath_abs = Path(filepath_obj._flavour.normpath(str(path_root / filepath_obj)))
 
     # if filepath_abs is not relative to path_root, relative_to throws an error
     try:
