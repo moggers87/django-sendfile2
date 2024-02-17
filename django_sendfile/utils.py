@@ -1,6 +1,7 @@
 from functools import lru_cache
 from importlib import import_module
 from mimetypes import guess_type
+from os.path import normpath
 from pathlib import Path, PurePath
 from urllib.parse import quote
 import logging
@@ -32,11 +33,9 @@ def _convert_file_to_url(path):
     path_obj = PurePath(path)
 
     relpath = path_obj.relative_to(path_root)
-    # Python 3.5: Path.resolve() has no `strict` kwarg, so use pathmod from an
-    # already instantiated Path object
-    url = relpath._flavour.pathmod.normpath(str(url_root / relpath))
+    url = normpath(url_root / relpath)
 
-    return quote(str(url))
+    return quote(url)
 
 
 def _sanitize_path(filepath):
@@ -45,12 +44,7 @@ def _sanitize_path(filepath):
     except TypeError:
         raise ImproperlyConfigured('You must specify a value for SENDFILE_ROOT')
 
-    filepath_obj = Path(filepath)
-
-    # get absolute path
-    # Python 3.5: Path.resolve() has no `strict` kwarg, so use pathmod from an
-    # already instantiated Path object
-    filepath_abs = Path(filepath_obj._flavour.pathmod.normpath(str(path_root / filepath_obj)))
+    filepath_abs = Path(normpath(path_root / filepath))
 
     # if filepath_abs is not relative to path_root, relative_to throws an error
     try:
