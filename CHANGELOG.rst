@@ -1,6 +1,16 @@
 Changelog
 ---------
 
+0.7.1
+=====
+
+:release-date: 2024-02-17
+
+- Drop Python 3.7 support
+- Drop Django 3.2 and 4.0 support
+- Add Python 3.11 and 3.12 support
+- Add Django 4.2 and 5.0 support
+
 0.7.0
 =====
 
