@@ -25,7 +25,7 @@ cases where you need Django to do some work before serving the actual file.
 Supported Python Versions
 =========================
 
-Python 3.8, 3.9, 3.10, 3.11, and 3.10 are currently supported by this library.
+Python 3.8, 3.9, 3.10, and 3.11 are currently supported by this library.
 
 Supported Django Versions
 =========================
