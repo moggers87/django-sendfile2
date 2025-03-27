@@ -14,7 +14,7 @@ setup(
     long_description=open('README.rst').read(),
     author='Matt Molyneaux',
     author_email='moggers87+git@moggers87.co.uk',
-    url='https://github.com/moggers87/django-sendfile2',
+    url='https://codeberg.org/moggers87/django-sendfile2',
     license='BSD',
 
     install_requires=['django'],

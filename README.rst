@@ -2,8 +2,6 @@
 Django Sendfile 2
 =================
 
-.. image:: https://github.com/moggers87/django-sendfile2/actions/workflows/tests.yml/badge.svg
-   :target: https://github.com/moggers87/django-sendfile2/actions/workflows/tests.yml
 .. image:: https://readthedocs.org/projects/django-sendfile2/badge/?version=latest
    :target: https://django-sendfile2.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
@@ -19,7 +17,7 @@ Note this should not be used for regular file serving (e.g. CSS etc), only for
 cases where you need Django to do some work before serving the actual file.
 
 - Download: https://pypi.org/project/django-sendfile2/
-- Source: https://github.com/moggers87/django-sendfile2
+- Source: https://codeberg.org/moggers87/django-sendfile2
 - Documentation: https://django-sendfile2.readthedocs.io/
 
 Supported Python Versions
